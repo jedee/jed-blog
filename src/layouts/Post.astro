@@ -1,0 +1,62 @@
+---
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{frontmatter.title} — Jedi's Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <a href="/">← Back to Home</a>
+    <a href="/blog">All Posts</a>
+  </nav>
+  <main>
+    <article>
+      <header>
+        <h1>{frontmatter.title}</h1>
+        <div class="meta">
+          <time>{frontmatter.date}</time>
+          {frontmatter.tags?.map(t => <span class="tag">{t}</span>)}
+        </div>
+      </header>
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+  </main>
+</body>
+</html>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', sans-serif; background: #0a0a0f; color: #e2e8f0; min-height: 100vh; }
+  nav { display: flex; gap: 20px; padding: 24px 40px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 500; }
+  nav a:hover { color: #818cf8; }
+  main { max-width: 720px; margin: 0 auto; padding: 60px 24px 120px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 700; line-height: 1.2; color: #f8fafc; margin-bottom: 16px; }
+  .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; color: #64748b; margin-bottom: 40px; }
+  .tag { background: rgba(99,102,241,0.15); color: #818cf8; padding: 2px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .prose { font-size: 17px; line-height: 1.8; color: #cbd5e1; }
+  .prose :global(h2) { font-size: 22px; font-weight: 700; color: #f1f5f9; margin: 40px 0 16px; }
+  .prose :global(h3) { font-size: 18px; font-weight: 600; color: #e2e8f0; margin: 32px 0 12px; }
+  .prose :global(p) { margin-bottom: 20px; }
+  .prose :global(strong) { color: #f8fafc; font-weight: 600; }
+  .prose :global(a) { color: #818cf8; }
+  .prose :global(code) { background: #1e293b; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
+  .prose :global(pre) { background: #1e293b; padding: 20px 24px; border-radius: 10px; overflow-x: auto; margin: 24px 0; }
+  .prose :global(pre code) { background: none; padding: 0; }
+  .prose :global(blockquote) { border-left: 3px solid #6366f1; padding-left: 20px; color: #94a3b8; font-style: italic; margin: 24px 0; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 24px; margin-bottom: 20px; }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+  .prose :global(th) { background: #1e293b; padding: 10px 16px; text-align: left; font-weight: 600; color: #e2e8f0; }
+  .prose :global(td) { padding: 10px 16px; border-bottom: 1px solid #1e293b; }
+  .prose :global(tr:last-child td) { border-bottom: none; }
+</style>

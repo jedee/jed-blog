@@ -1,0 +1,15 @@
+{
+  "name": "jed-blog",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Jedi Ojeh's blog — engineering, Nigerian tech, and building in public",
+  "homepage": "https://blog.jediojeh.dev",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}
